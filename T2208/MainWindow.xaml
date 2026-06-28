@@ -1,0 +1,193 @@
+<Window
+	x:Class="T2208.MainWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:JCustomControls="clr-namespace:JayCustomControlLib;assembly=JayCustomControlLib"
+	xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+	xmlns:MyInfor="clr-namespace:T2208.MyInformations"
+	xmlns:MyUserControls="clr-namespace:T2208.MyUserControls"
+	xmlns:ViewModels="clr-namespace:T2208.ViewModels"
+	xmlns:local="clr-namespace:T2208"
+	xmlns:MyPage="clr-namespace:T2208.Views"
+	x:Name="DM24"
+	Foreground="#FFFFFFFF"
+	Height="768"
+	Width="1024"
+	MinHeight="46"
+	MinWidth="120"
+	WindowStyle="None"
+	AllowsTransparency="True"
+	ResizeMode="CanResizeWithGrip"
+	Background="#ff3c3c3c"
+	DataContext="{Binding Source='{x:Static ViewModels:ViewModelLocator.MainWindowViewModel}'}"
+	Visibility="{Binding Source='{x:Static ViewModels:ViewModelLocator.SystemIn}', Path=ShowDIO24}">
+	<JCustomControls:DrawerHost
+		IsLeftDrawerOpen="{Binding IsShowDeviceList, Mode=TwoWay}">
+		<i:Interaction.Triggers>
+			<i:EventTrigger
+				EventName="DrawerLeftOpen">
+				<i:InvokeCommandAction
+					Command="{Binding StartScanDeviceCommand}" />
+			</i:EventTrigger>
+		</i:Interaction.Triggers>
+		<JCustomControls:DrawerHost.LeftDrawerContent>
+			<DockPanel>
+				<Border
+					DockPanel.Dock="Top" />
+				<Button
+					DockPanel.Dock="Bottom"
+					Margin="10"
+					HorizontalAlignment="Center"
+					Content="{DynamicResource Str_Research}"
+					Command="{Binding StartScanDeviceCommand}" />
+				<Border
+					Margin="5"
+					Width="200"
+					Background="#FF808080"
+					CornerRadius="10">
+					<ListBox
+						Margin="10"
+						ItemsSource="{Binding DeviceCollection}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate
+								DataType="{x:Type MyInfor:DeviceInfo}">
+								<MyUserControls:DeviceModule
+									DeviceName="{Binding DeviceName}"
+									Address="{Binding DeviceAddress}"
+									MAC="{Binding DeviceMac}">
+									<i:Interaction.Triggers>
+										<i:EventTrigger
+											EventName="MouseLeftButtonDown">
+											<i:InvokeCommandAction
+												Command="{Binding ConnectCommand}"
+												CommandParameter="{Binding}" />
+										</i:EventTrigger>
+									</i:Interaction.Triggers>
+								</MyUserControls:DeviceModule>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ListBox>
+				</Border>
+			</DockPanel>
+		</JCustomControls:DrawerHost.LeftDrawerContent>
+		<Grid>
+			<DockPanel>
+				<DockPanel
+					Dock="Top"
+					Height="30">
+					<StackPanel
+						Name="STP"
+						DockPanel.Dock="Left"
+						Orientation="Horizontal">
+						<Image
+							Name="Icon"
+							Margin="10,2,2,2" />
+						<Button
+							Margin="2"
+							Width="30"
+							Command="{x:Static JCustomControls:DrawerHost.OpenDrawerCommand}"
+							CommandParameter="{x:Static Dock.Left}">
+							<Viewbox>
+								<Canvas
+									Style="{StaticResource Icon_Canvas}">
+									<Path
+										Style="{StaticResource Icon_Research}" />
+								</Canvas>
+							</Viewbox>
+						</Button>
+						<TextBlock />
+						<Control
+							Style="{StaticResource Control_Led}"
+							Height="20"
+							Width="20"
+							DockPanel.Dock="Right"
+							Margin="5,0"
+							Background="{Binding IsConnected, Converter='{x:Static ViewModels:ConverterProvider.BoolToBrushConverter}'}" />
+						<TextBlock />
+						<ComboBox
+							Margin="2"
+							ItemsSource="{Binding Languages}"
+							SelectedIndex="{Binding SelectedLanguage, Mode=TwoWay}" />
+					</StackPanel>
+					<DockPanel
+						DataContext="{Binding Source='{x:Static ViewModels:ViewModelLocator.WindowViewModel}'}">
+						<UIElement.InputBindings>
+							<MouseBinding
+								MouseAction="LeftDoubleClick"
+								Command="{Binding WindowStateChangeCommand}" />
+							<MouseBinding
+								MouseAction="LeftClick"
+								Command="{Binding WindowMoveCommand}" />
+						</UIElement.InputBindings>
+						<Grid
+							DockPanel.Dock="Right"
+							Width="{Binding ElementName=STP, Path=ActualWidth}">
+							<Button
+								HorizontalAlignment="Right"
+								Style="{StaticResource Btn_Exit}"
+								Command="{Binding WindowCloseCommand}" />
+						</Grid>
+						<TextBlock
+							Name="CenterName"
+							HorizontalAlignment="Stretch"
+							FontSize="20"
+							TextAlignment="Center" />
+					</DockPanel>
+				</DockPanel>
+				<Grid>
+					<DockPanel>
+						<JCustomControls:ListDisplayer
+							DockPanel.Dock="Top"
+							Style="{StaticResource TopNaviGationBar}"
+							Height="40"
+							ItemsSource="{Binding PageItemCollection}">
+							<ItemsControl.ItemTemplate>
+								<DataTemplate
+									DataType="{x:Type local:PageItem}">
+									<JCustomControls:JSwitcher
+										ActiveBackgroundBrush="#FF00FF00"
+										GroupName="PageNavigation"
+										Margin="5"
+										IsChecked="{Binding IsChecked, Mode=TwoWay}"
+										Content="{Binding Name}"
+										Command="{Binding Command}"
+										CommandParameter="{Binding}" />
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</JCustomControls:ListDisplayer>
+						<Frame
+							DockPanel.Dock="Bottom"
+							Height="300">
+							<ContentControl.Content>
+								<MyPage:ChannelPage
+									DockPanel.Dock="Bottom" />
+							</ContentControl.Content>
+						</Frame>
+						<Frame
+							NavigationUIVisibility="Hidden"
+							Content="{Binding PageContent}" />
+					</DockPanel>
+					<Grid
+						Background="#90FFFFFF"
+						Visibility="Collapsed"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch">
+						<JCustomControls:JProgressRing
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Height="200"
+							Width="200"
+							Foreground="#FF808080"
+							Visibility="{Binding IsBusy, Converter='{x:Static ViewModels:ConverterProvider.BoolToVisibilityConverter}', ConverterParameter=Collapsed}" />
+						<Label
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							Background="#00FFFFFF" />
+					</Grid>
+				</Grid>
+			</DockPanel>
+		</Grid>
+	</JCustomControls:DrawerHost>
+</Window>
