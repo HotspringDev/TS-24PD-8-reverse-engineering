@@ -1,0 +1,565 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DA9576A9-72E5-4323-B944-219AF075386B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>T2208</RootNamespace>
+    <AssemblyName>T2208</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60DC8134-EBA5-43B8-BCC9-BB4BC16C2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>T2208.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BasicClassLib">
+      <HintPath>..\..\..\dump\Dumps\BasicClassLib.dll</HintPath>
+    </Reference>
+    <Reference Include="CommLibrary">
+      <HintPath>..\..\..\dump\Dumps\CommLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="FFT">
+      <HintPath>..\..\..\dump\Dumps\FFT.dll</HintPath>
+    </Reference>
+    <Reference Include="JayCustomControlLib">
+      <HintPath>..\..\..\dump\Dumps\JayCustomControlLib.dll</HintPath>
+    </Reference>
+    <Reference Include="JayLib">
+      <HintPath>..\..\..\dump\Dumps\JayLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Lib.Controls.MyControls">
+      <HintPath>..\..\..\dump\Dumps\Lib.Controls.MyControls.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="mscorlib" />
+    <Reference Include="MaterialDesignThemes.Wpf" />
+    <Reference Include="System.Windows.Interactivity" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="-Module-.cs" />
+    <Compile Include="API\BackUpManager.cs" />
+    <Compile Include="API\DataManager.cs" />
+    <Compile Include="API\DeviceManager.cs" />
+    <Compile Include="API\Execute.cs" />
+    <Compile Include="API\ViewModelManager.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChannelMappingViewModel.cs" />
+    <Compile Include="ChannelMappingWindow.xaml.cs">
+      <DependentUpon>ChannelMappingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Costura\AssemblyLoader.cs" />
+    <Compile Include="CustomControls\Waiting.cs" />
+    <Compile Include="DeviceCommuncation\AckManager.cs" />
+    <Compile Include="DeviceCommuncation\CommandConst.cs" />
+    <Compile Include="DeviceCommuncation\ConnectDeviceStatus.cs" />
+    <Compile Include="DeviceCommuncation\CutData.cs" />
+    <Compile Include="DeviceCommuncation\CutDataManager.cs" />
+    <Compile Include="DeviceCommuncation\DownStream.cs" />
+    <Compile Include="DeviceCommuncation\NetUdpClient.cs" />
+    <Compile Include="DeviceCommuncation\UpStream.cs" />
+    <Compile Include="DeviceCommuncation\UpStreamCommand.cs" />
+    <Compile Include="DialogWindows\InputDialog.xaml.cs">
+      <DependentUpon>InputDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\InputDialogViewModel.cs" />
+    <Compile Include="DialogWindows\MessageDialog.xaml.cs">
+      <DependentUpon>MessageDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\ThemeDialog.xaml.cs">
+      <DependentUpon>ThemeDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\NotEmptyValidationRule.cs" />
+    <Compile Include="Extension\ByteHelper.cs" />
+    <Compile Include="Extension\DoubleExtensionProperty.cs" />
+    <Compile Include="Extension\StringHelper.cs" />
+    <Compile Include="IChannelGroup.cs" />
+    <Compile Include="InputWindow.xaml.cs">
+      <DependentUpon>InputWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InputWindowViewModel.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="MixerDigitalIO.cs" />
+    <Compile Include="Models\ActionManager.cs" />
+    <Compile Include="Models\BaseData.cs" />
+    <Compile Include="Models\BaseGateCompModel.cs" />
+    <Compile Include="Models\ButtonItemModel.cs" />
+    <Compile Include="Models\ButtonModel.cs" />
+    <Compile Include="Models\CompModel.cs" />
+    <Compile Include="Models\ConnectionModel.cs" />
+    <Compile Include="Models\ConnectionType.cs" />
+    <Compile Include="Models\ConnectTypes.cs" />
+    <Compile Include="Models\DcaGroupItemModel.cs" />
+    <Compile Include="Models\DcaItemModel.cs" />
+    <Compile Include="Models\DeviceModel.cs" />
+    <Compile Include="Models\DigitalModel.cs" />
+    <Compile Include="Models\EffectModel.cs" />
+    <Compile Include="Models\FxItemModel.cs" />
+    <Compile Include="Models\FxModel.cs" />
+    <Compile Include="Models\GateModel.cs" />
+    <Compile Include="Models\GeqChannelModel.cs" />
+    <Compile Include="Models\GeqFreqModel.cs" />
+    <Compile Include="Models\MainData.cs" />
+    <Compile Include="Models\ModelInstance.cs" />
+    <Compile Include="Models\PostPre.cs" />
+    <Compile Include="Models\RoutingPan.cs" />
+    <Compile Include="Models\Serializer.cs" />
+    <Compile Include="Multiple_NIC.cs" />
+    <Compile Include="MyConverters\BoolOppsiteConverter.cs" />
+    <Compile Include="MyConverters\BoolOppsiteToVisibilityConverter.cs" />
+    <Compile Include="MyConverters\BoolToBrushConverter.cs" />
+    <Compile Include="MyConverters\BoolToLEDStatusConverter.cs" />
+    <Compile Include="MyConverters\BoolToResourceStringConverter.cs" />
+    <Compile Include="MyConverters\BoolToStringConverter.cs" />
+    <Compile Include="MyConverters\BoolToVisibilityConverter.cs" />
+    <Compile Include="MyConverters\ByteToBrushConverter.cs" />
+    <Compile Include="MyConverters\DelayToStringConverter.cs" />
+    <Compile Include="MyConverters\FaderValueToStringConverter.cs" />
+    <Compile Include="MyConverters\GEQConverter.cs" />
+    <Compile Include="MyConverters\GeqGainValueToStringConverter.cs" />
+    <Compile Include="MyConverters\LightStatusConverter.cs" />
+    <Compile Include="MyConverters\MultiBoolConverter.cs" />
+    <Compile Include="MyConverters\NullToVisibilityConverter.cs" />
+    <Compile Include="MyConverters\OnlyTrueConverter.cs" />
+    <Compile Include="MyConverters\StringListConverter.cs" />
+    <Compile Include="MyConverters\StringSuffixConverter.cs" />
+    <Compile Include="MyDatas\BaseDate.cs" />
+    <Compile Include="MyDatas\ChannelData.cs" />
+    <Compile Include="MyDatas\DCAData.cs" />
+    <Compile Include="MyDatas\FXData.cs" />
+    <Compile Include="MyDatas\GEQData.cs" />
+    <Compile Include="MyDatas\PageData.cs" />
+    <Compile Include="MyDatas\PageType.cs" />
+    <Compile Include="MyDatas\RouterAdapter.cs" />
+    <Compile Include="MyDatas\RouterData.cs" />
+    <Compile Include="MyDatas\RouterTableColumn.cs" />
+    <Compile Include="MyDatas\RouterTableRow.cs" />
+    <Compile Include="MyDatas\SceneData.cs" />
+    <Compile Include="MyDatas\WindowData.cs" />
+    <Compile Include="MyInformations\AuxFxItem.cs" />
+    <Compile Include="MyInformations\ChannelInfo.cs" />
+    <Compile Include="MyInformations\ChannelType.cs" />
+    <Compile Include="MyInformations\CompressorInfo.cs" />
+    <Compile Include="MyInformations\ConnectTypes.cs" />
+    <Compile Include="MyInformations\DCAInfo.cs" />
+    <Compile Include="MyInformations\DeviceInfo.cs" />
+    <Compile Include="MyInformations\DigitalInfo.cs" />
+    <Compile Include="MyInformations\EffectInfo.cs" />
+    <Compile Include="MyInformations\EqualizerInfo.cs" />
+    <Compile Include="MyInformations\FXGenerator.cs" />
+    <Compile Include="MyInformations\FXInfo.cs" />
+    <Compile Include="MyInformations\FXItem.cs" />
+    <Compile Include="MyInformations\FXValueType.cs" />
+    <Compile Include="MyInformations\GEQFrequenceValue.cs" />
+    <Compile Include="MyInformations\GEQInfo.cs" />
+    <Compile Include="MyInformations\GroupInfo.cs" />
+    <Compile Include="MyInformations\NoiseGateInfo.cs" />
+    <Compile Include="MyInformations\RouteType.cs" />
+    <Compile Include="MyInformations\SceneInfo.cs" />
+    <Compile Include="MyInformations\SystemInfo.cs" />
+    <Compile Include="MyTypespace\ThemeDialogType.cs" />
+    <Compile Include="MyUserControls\AssignMainButton.xaml.cs">
+      <DependentUpon>AssignMainButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\ChannelFader.xaml.cs">
+      <DependentUpon>ChannelFader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\DeviceModule.xaml.cs">
+      <DependentUpon>DeviceModule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\DigitalBox.xaml.cs">
+      <DependentUpon>DigitalBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\FBCLight.xaml.cs">
+      <DependentUpon>FBCLight.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\RouterFader.xaml.cs">
+      <DependentUpon>RouterFader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\Slider.xaml.cs">
+      <DependentUpon>Slider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NIC_Select.xaml.cs">
+      <DependentUpon>NIC_Select.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageItem.cs" />
+    <Compile Include="ProcessedByFody.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="SmallViewModels\WindowViewModel.cs" />
+    <Compile Include="UtilTools\INITool.cs" />
+    <Compile Include="ViewModels\AnotherCommandImplementation.cs" />
+    <Compile Include="ViewModels\AutoMix.cs" />
+    <Compile Include="ViewModels\Base\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Base\IItemModel.cs" />
+    <Compile Include="ViewModels\ButtonItem.cs" />
+    <Compile Include="ViewModels\ChannelItem.cs" />
+    <Compile Include="ViewModels\ChannelPage.cs" />
+    <Compile Include="ViewModels\CheckBoxItem.cs" />
+    <Compile Include="ViewModels\Const.cs" />
+    <Compile Include="ViewModels\ConverterProvider.cs" />
+    <Compile Include="ViewModels\DCA.cs" />
+    <Compile Include="ViewModels\DCAItem.cs" />
+    <Compile Include="ViewModels\Digital.cs" />
+    <Compile Include="ViewModels\DSP.cs" />
+    <Compile Include="ViewModels\Ducker.cs" />
+    <Compile Include="ViewModels\FBC.cs" />
+    <Compile Include="ViewModels\FBCLightItem.cs" />
+    <Compile Include="ViewModels\Final.cs" />
+    <Compile Include="ViewModels\FX.cs" />
+    <Compile Include="ViewModels\GEQ.cs" />
+    <Compile Include="ViewModels\GroupType.cs" />
+    <Compile Include="ViewModels\PageItemViewModel.cs" />
+    <Compile Include="ViewModels\PresetGroup.cs" />
+    <Compile Include="ViewModels\PresetItem.cs" />
+    <Compile Include="ViewModels\PresetType.cs" />
+    <Compile Include="ViewModels\Route.cs" />
+    <Compile Include="ViewModels\SaveLoadCopy.cs" />
+    <Compile Include="ViewModels\SystemIn.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="ViewModels\ViewModelMessager.cs" />
+    <Compile Include="ViewModels\ViewModelMessenger.cs" />
+    <Compile Include="Views\AssignChannel.xaml.cs">
+      <DependentUpon>AssignChannel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChannelPage.xaml.cs">
+      <DependentUpon>ChannelPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DrawerFFT.cs" />
+    <Compile Include="Views\GEQ.xaml.cs">
+      <DependentUpon>GEQ.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Page_AutoMix.xaml.cs">
+      <DependentUpon>Page_AutoMix.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Page_DCA.xaml.cs">
+      <DependentUpon>Page_DCA.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Page_Digital.xaml.cs">
+      <DependentUpon>Page_Digital.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Page_Ducker.xaml.cs">
+      <DependentUpon>Page_Ducker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Page_FBC.xaml.cs">
+      <DependentUpon>Page_FBC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Page_FX.xaml.cs">
+      <DependentUpon>Page_FX.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Page_SaveLoadCopy.xaml.cs">
+      <DependentUpon>Page_SaveLoadCopy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Page_System.xaml.cs">
+      <DependentUpon>Page_System.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Route.xaml.cs">
+      <DependentUpon>Route.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Costura\basicclasslib\dll.compressed" />
+    <EmbeddedResource Include="Costura\basicclasslib\pdb.compressed" />
+    <EmbeddedResource Include="Costura\commlibrary\dll.compressed" />
+    <EmbeddedResource Include="Costura\commlibrary\pdb.compressed" />
+    <EmbeddedResource Include="Costura\fft\dll.compressed" />
+    <EmbeddedResource Include="Costura\fft\pdb.compressed" />
+    <EmbeddedResource Include="Costura\icsharpcode\avalonedit\dll.compressed" />
+    <EmbeddedResource Include="Costura\jaycustomcontrollib\dll.compressed" />
+    <EmbeddedResource Include="Costura\jaycustomcontrollib\pdb.compressed" />
+    <EmbeddedResource Include="Costura\jaylib\dll.compressed" />
+    <EmbeddedResource Include="Costura\jaylib\pdb.compressed" />
+    <EmbeddedResource Include="Costura\jetbrains\annotations\dll.compressed" />
+    <EmbeddedResource Include="Costura\lib\controls\mycontrols\dll.compressed" />
+    <EmbeddedResource Include="Costura\lib\controls\mycontrols\pdb.compressed" />
+    <EmbeddedResource Include="Costura\mahapps\metro\dll.compressed" />
+    <EmbeddedResource Include="Costura\materialdesigncolors\dll.compressed" />
+    <EmbeddedResource Include="Costura\materialdesignthemes\wpf\dll.compressed" />
+    <EmbeddedResource Include="Costura\microsoft\expression\interactions\dll.compressed" />
+    <EmbeddedResource Include="Costura\seikaku\wpf\theme\dll.compressed" />
+    <EmbeddedResource Include="Costura\seikaku\wpf\theme\pdb.compressed" />
+    <EmbeddedResource Include="Costura\showmethexaml\avalonedit\dll.compressed" />
+    <EmbeddedResource Include="Costura\showmethexaml\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\data\sqlite\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\windows\interactivity\dll.compressed" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ChannelMappingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\InputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\MessageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\ThemeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InputWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Language\Stringresource.En-Us.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Language\Stringresource.Zh-Cn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyUserControls\AssignMainButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyUserControls\ChannelFader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyUserControls\DeviceModule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyUserControls\DigitalBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyUserControls\FBCLight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyUserControls\RouterFader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyUserControls\Slider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NIC_Select.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\24.12.Resource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\Constresource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\Imageresource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\Imagesource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\Viewmodelresource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Brushstyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Controlstyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Icons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AssignChannel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChannelPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GEQ.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Page_AutoMix.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Page_DCA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Page_Digital.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Page_Ducker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Page_FBC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Page_FX.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Page_SaveLoadCopy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Page_System.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Route.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\bitbug_favicon.ico" />
+    <Resource Include="images\darrow_light.png" />
+    <Resource Include="images\darrow_ulight.png" />
+    <Resource Include="images\darrow_ulighttop.png" />
+    <Resource Include="images\dynbk.png" />
+    <Resource Include="images\exit.png" />
+    <Resource Include="images\expbk.png" />
+    <Resource Include="images\faderhead_gray.png" />
+    <Resource Include="images\faderv_gray.png" />
+    <Resource Include="images\fader_hr.png" />
+    <Resource Include="images\footbackground.png" />
+    <Resource Include="images\geqthumb.png" />
+    <Resource Include="images\geqthumbfocus.png" />
+    <Resource Include="images\heightback.png" />
+    <Resource Include="images\h_slidertrack.png" />
+    <Resource Include="images\img_toptitle.png" />
+    <Resource Include="images\left.png" />
+    <Resource Include="images\left_singlesliderback.png" />
+    <Resource Include="images\left_singlesliderbackb.png" />
+    <Resource Include="images\longparamsliderimg.png" />
+    <Resource Include="images\longparamsliderimg2.png" />
+    <Resource Include="images\mid_bimg.png" />
+    <Resource Include="images\ooopic.png" />
+    <Resource Include="images\rightdown_img.png" />
+    <Resource Include="images\right_long.png" />
+    <Resource Include="images\right_singlesliderback.png" />
+    <Resource Include="images\right_singlesliderbackb.png" />
+    <Resource Include="images\searchimage.png" />
+    <Resource Include="images\show.ico" />
+    <Resource Include="images\thumbvertical.png" />
+    <Resource Include="images\thumbverticallastdrag.png" />
+    <Resource Include="images\thumb_new.png" />
+    <Resource Include="images\timg.jpg" />
+    <Resource Include="images\tmix20-logo.jpg" />
+    <Resource Include="images\tmix20-logo.png" />
+    <Resource Include="images\toppro.ico" />
+    <Resource Include="images\top_banner.png" />
+    <Resource Include="images\v_slidertrack.png" />
+    <Resource Include="images\warning.png" />
+    <Resource Include="resource\24.12ds-digital.png" />
+    <Resource Include="resource\digital-dm24.8.png" />
+    <Resource Include="resource\digital_24.ico" />
+    <Resource Include="resource\digital_24.png" />
+    <Resource Include="resource\dm24.8(digital).ico" />
+    <Resource Include="resource\dm24.8-digital.png" />
+    <Resource Include="resource\dm24.8_oem.ico" />
+    <Resource Include="resource\dm24.8_show.ico" />
+    <Resource Include="resource\dm24.8_topppro.ico" />
+    <Resource Include="resource\dragbuttonv1.png" />
+    <Resource Include="resource\dragselectedbuttonv1.png" />
+    <Resource Include="resource\exit.png" />
+    <Resource Include="resource\gh8-24sz.ico" />
+    <Resource Include="resource\gh8-24sz.png" />
+    <Resource Include="resource\logo.png" />
+    <Resource Include="resource\matrix24.8.ico" />
+    <Resource Include="resource\matrix24.8.png" />
+    <Resource Include="resource\midborderbackground.png" />
+    <Resource Include="resource\oem-dm24.8.png" />
+    <Resource Include="resource\search.png" />
+    <Resource Include="resource\show-dm24.8.png" />
+    <Resource Include="resource\show.ico" />
+    <Resource Include="resource\thumb_new.png" />
+    <Resource Include="resource\topp-dm24.8.png" />
+    <Resource Include="resource\ts-24pd-8.ico" />
+    <Resource Include="resource\ts-24pd-8.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

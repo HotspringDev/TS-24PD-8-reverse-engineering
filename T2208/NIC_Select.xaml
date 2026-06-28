@@ -1,0 +1,62 @@
+<Window
+	x:Class="T2208.NIC_Select"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:local="clr-namespace:T2208"
+	WindowStartupLocation="CenterScreen"
+	Title="Network Interface Configure"
+	Height="200"
+	Width="350"
+	ResizeMode="NoResize"
+	Closed="Window_Closed">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		<ComboBox
+			Name="NIC_collect"
+			Grid.Column="1"
+			HorizontalAlignment="Center"
+			Margin="0"
+			Grid.Row="1"
+			VerticalAlignment="Center"
+			Width="120" />
+		<TextBlock
+			Text="Network Interface Select"
+			HorizontalAlignment="Center"
+			Margin="0"
+			Grid.Row="1"
+			VerticalAlignment="Center"
+			Foreground="#FF000000" />
+		<Button
+			Name="Select"
+			Content="OK"
+			HorizontalAlignment="Center"
+			Margin="0"
+			Grid.Row="3"
+			VerticalAlignment="Center"
+			Width="75"
+			Height="20"
+			Click="Select_Click" />
+		<Button
+			Name="Refresh"
+			Content="Refresh"
+			Grid.Column="1"
+			HorizontalAlignment="Center"
+			Margin="0"
+			Grid.Row="3"
+			VerticalAlignment="Center"
+			Width="75"
+			Height="20"
+			Click="Refresh_Click" />
+	</Grid>
+</Window>

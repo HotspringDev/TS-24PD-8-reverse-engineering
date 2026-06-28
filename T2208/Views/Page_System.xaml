@@ -1,0 +1,415 @@
+<Page
+	x:Class="T2208.Views.Page_System"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:om="clr-namespace:Lib.Controls.FFTControl;assembly=Lib.Controls.MyControls"
+	xmlns:JCustomControls="clr-namespace:JayCustomControlLib;assembly=JayCustomControlLib"
+	xmlns:ViewModels="clr-namespace:T2208.ViewModels"
+	xmlns:Infos="clr-namespace:T2208.MyInformations"
+	xmlns:local="clr-namespace:T2208.Views"
+	xmlns:MyUserControls="clr-namespace:T2208.MyUserControls"
+	Title="Page_System">
+	<FrameworkElement.Resources>
+		<ResourceDictionary>
+			<Style
+				x:Key="{x:Type TextBlock}"
+				TargetType="{x:Type TextBlock}">
+				<Setter
+					Property="Foreground"
+					Value="#FFFFFFFF" />
+			</Style>
+			<Style
+				x:Key="SliderTitle"
+				TargetType="{x:Type TextBlock}">
+				<Setter
+					Property="Foreground"
+					Value="#FFF5DEB3" />
+				<Setter
+					Property="TextBlock.TextAlignment"
+					Value="Center" />
+			</Style>
+		</ResourceDictionary>
+	</FrameworkElement.Resources>
+	<Border
+		Background="{StaticResource Image_Background}"
+		BorderThickness="1"
+		Padding="8">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition
+					Width="2*" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<Grid
+				Column="0">
+				<Grid.RowDefinitions>
+					<RowDefinition
+						Height="4*" />
+					<RowDefinition
+						Height="2*" />
+					<RowDefinition
+						Height="0.7*" />
+					<RowDefinition
+						Height="3*" />
+					<RowDefinition
+						Height="3*" />
+				</Grid.RowDefinitions>
+				<Grid
+					Row="0"
+					Margin="0,0,2.5,0">
+					<Grid.RowDefinitions>
+						<RowDefinition
+							Height="*" />
+					</Grid.RowDefinitions>
+					<Border
+						Background="{StaticResource Image_Background}">
+						<StackPanel
+							Orientation="Horizontal">
+							<Button
+								Name="DefaultBtn"
+								Width="99"
+								Height="36"
+								Margin="10,0"
+								Content="{DynamicResource Str_DefaultSetting}"
+								Command="{Binding SetDefaultSettingCommand}" />
+							<GroupBox
+								Margin="10,0"
+								Width="188"
+								Header="{DynamicResource DeviceNameSetting}"
+								Foreground="#FFFFFFFF">
+								<StackPanel
+									Margin="0">
+									<TextBox
+										Name="devicename"
+										Width="130"
+										Height="25"
+										InputMethod.IsInputMethodEnabled="False"
+										MaxLength="16"
+										Text="{Binding DeviceName, Mode=TwoWay}" />
+									<Button
+										Width="130"
+										Height="35"
+										Margin="0,10,0,0"
+										Content="{DynamicResource Str_ChangeDeviceName}"
+										Command="{Binding SetNameCommand}" />
+								</StackPanel>
+							</GroupBox>
+							<DockPanel
+								VerticalAlignment="Stretch"
+								HorizontalAlignment="Stretch">
+								<UniformGrid
+									DockPanel.Dock="Left"
+									Rows="1">
+									<Button
+										Width="60"
+										Height="30"
+										Margin="5"
+										Visibility="Collapsed"
+										Content="{Binding InitialPage}"
+										Command="{Binding ChangeInitialPageCommand}" />
+								</UniformGrid>
+								<UniformGrid
+									DockPanel.Dock="Right"
+									Rows="1"
+									Visibility="Collapsed">
+									<JCustomControls:JSwitcher
+										Width="60"
+										Height="30"
+										Margin="5" />
+									<JCustomControls:JSwitcher
+										Width="60"
+										Height="30"
+										Margin="5" />
+								</UniformGrid>
+								<Rectangle
+									Fill="#FFFFFFFF"
+									Width="1"
+									Visibility="Collapsed" />
+							</DockPanel>
+							<DockPanel
+								Margin="20"
+								Visibility="Hidden">
+								<Button
+									Width="80"
+									Height="30"
+									Click="Load_2412DS">DIO 24</Button>
+							</DockPanel>
+						</StackPanel>
+					</Border>
+				</Grid>
+				<Grid
+					x:Name="firmware"
+					Row="1"
+					Height="45">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition />
+						<ColumnDefinition />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition />
+						<RowDefinition />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<StackPanel
+						Grid.Row="0"
+						Grid.Column="0"
+						Orientation="Horizontal">
+						<TextBlock
+							Foreground="#FFFFFFFF"
+							Text="{DynamicResource Str_DeviceName}" />
+						<TextBlock
+							Name="name"
+							Foreground="#FFFFFFFF"
+							Text="{Binding DeviceName}" />
+					</StackPanel>
+					<StackPanel
+						Grid.Row="1"
+						Grid.Column="0"
+						Orientation="Horizontal">
+						<TextBlock
+							Foreground="#FFFFFFFF"
+							Text="DSP1 : " />
+						<TextBlock
+							Foreground="#FFFFFFFF"
+							Text="{Binding DSP1Version}" />
+					</StackPanel>
+					<StackPanel
+						Grid.Row="1"
+						Grid.Column="1"
+						Orientation="Horizontal">
+						<TextBlock
+							Foreground="#FFFFFFFF"
+							Text="DSP2 : " />
+						<TextBlock
+							Foreground="#FFFFFFFF"
+							Text="{Binding DSP2Version}" />
+					</StackPanel>
+					<StackPanel
+						Grid.Row="2"
+						Grid.Column="0"
+						Orientation="Horizontal">
+						<TextBlock
+							Foreground="#FFFFFFFF"
+							Text="MCU1 : " />
+						<TextBlock
+							Foreground="#FFFFFFFF"
+							Text="{Binding MCU1Version}" />
+					</StackPanel>
+					<StackPanel
+						Grid.Row="2"
+						Grid.Column="1"
+						Orientation="Horizontal">
+						<TextBlock
+							Foreground="#FFFFFFFF"
+							Text="MCU2 : " />
+						<TextBlock
+							Foreground="#FFFFFFFF"
+							Text="{Binding MCU2Version}" />
+					</StackPanel>
+				</Grid>
+				<Grid
+					Row="2">
+					<Button
+						FontSize="14"
+						Width="100"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Center"
+						Content="Output Matrix"
+						Command="{Binding MatrixPageCommand}" />
+				</Grid>
+				<Grid
+					Row="3">
+					<Grid.RowDefinitions>
+						<RowDefinition
+							Height="auto" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<TextBlock
+						Margin="33 3 3 3"
+						Height="20"
+						VerticalAlignment="Top"
+						Grid.Row="0">Route Main L To:</TextBlock>
+					<JCustomControls:ListDisplayer
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Grid.Row="1"
+						ItemsSource="{Binding LeftGroup}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate
+								DataType="{x:Type ViewModels:ButtonItem}">
+								<JCustomControls:JSwitcher
+									Width="60"
+									Height="25"
+									Margin="3"
+									Content="{Binding ChannelName}"
+									Command="{Binding MatrixSelectedCommand}"
+									IsChecked="{Binding IsSelected_Left}" />
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</JCustomControls:ListDisplayer>
+				</Grid>
+				<Grid
+					Row="4">
+					<Grid.RowDefinitions>
+						<RowDefinition
+							Height="auto" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<TextBlock
+						Margin="33 3 3 3"
+						Height="20"
+						VerticalAlignment="Top"
+						Grid.Row="0">Route Main R To:</TextBlock>
+					<JCustomControls:ListDisplayer
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Grid.Row="1"
+						ItemsSource="{Binding RightGroup}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate
+								DataType="{x:Type ViewModels:ButtonItem}">
+								<JCustomControls:JSwitcher
+									Width="60"
+									Height="25"
+									Margin="3"
+									Content="{Binding ChannelName}"
+									Command="{Binding MatrixSelectedCommand}"
+									IsChecked="{Binding IsSelected_Right}" />
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</JCustomControls:ListDisplayer>
+				</Grid>
+			</Grid>
+			<DockPanel
+				Grid.Column="1">
+				<Grid
+					VerticalAlignment="Bottom"
+					Height="150"
+					DockPanel.Dock="Bottom"
+					Width="330">
+					<Grid
+						ShowGridLines="False">
+						<Grid.RowDefinitions>
+							<RowDefinition
+								Height="Auto" />
+							<RowDefinition
+								Height="Auto" />
+							<RowDefinition
+								Height="Auto" />
+							<RowDefinition
+								Height="Auto" />
+							<RowDefinition
+								Height="Auto" />
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition
+								Width="120" />
+							<ColumnDefinition />
+						</Grid.ColumnDefinitions>
+						<Border
+							Grid.RowSpan="3"
+							MaxWidth="90"
+							MaxHeight="90"
+							BorderThickness="1"
+							HorizontalAlignment="Left"
+							VerticalAlignment="Top"
+							Margin="10,10">
+							<Image
+								Name="Image"
+								Stretch="UniformToFill" />
+						</Border>
+						<StackPanel
+							Grid.Column="1"
+							Orientation="Horizontal">
+							<TextBlock
+								Text="{DynamicResource ProductName}" />
+							<TextBlock
+								Name="lbProduct" />
+						</StackPanel>
+						<StackPanel
+							Grid.Column="1"
+							Grid.Row="1"
+							Orientation="Horizontal">
+							<TextBlock
+								Text="{DynamicResource Version}" />
+							<TextBlock
+								Name="lbVersion"
+								Text="V1.0.2" />
+						</StackPanel>
+						<StackPanel
+							Grid.Column="1"
+							Grid.Row="2"
+							Orientation="Horizontal">
+							<TextBlock
+								Text="{DynamicResource Copyright}" />
+							<TextBlock
+								Name="lbCopyRight"
+								Text="(c)2018" />
+						</StackPanel>
+						<StackPanel
+							Grid.Column="1"
+							Grid.Row="3"
+							Visibility="Collapsed">
+							<TextBlock
+								Name="lbCompany"
+								Text="Seikaku Technical Group Ltd." />
+						</StackPanel>
+						<Grid
+							Column="1"
+							Row="4" />
+					</Grid>
+				</Grid>
+				<DockPanel>
+					<Border
+						DockPanel.Dock="Top"
+						Margin="5,2"
+						BorderBrush="#FFFFFFFF"
+						BorderThickness="0,0,0,2">
+						<TextBlock
+							Foreground="#FFFFFFFF"
+							Text="{DynamicResource Str_LCDController}" />
+					</Border>
+					<UniformGrid
+						Columns="2"
+						HorizontalAlignment="Center">
+						<DockPanel>
+							<TextBlock
+								DockPanel.Dock="Top"
+								Text="LCD"
+								Style="{StaticResource SliderTitle}" />
+							<TextBlock
+								DockPanel.Dock="Top"
+								TextAlignment="Center"
+								Text="{Binding LCDValue}" />
+							<Label
+								DockPanel.Dock="Bottom"
+								Width="50"
+								HorizontalContentAlignment="Center"
+								Content="{Binding Attack, Converter='{x:Static ViewModels:ConverterProvider.StringListConverter}', ConverterParameter='{x:Static ViewModels:Const.DuckerAttack}'}" />
+							<JCustomControls:JSlider
+								Style="{StaticResource Slider_Vertical}"
+								Maximum="16"
+								Minimum="1"
+								IsUIFireEventDirectly="True"
+								SendValue="{Binding LCDSendValue, Mode=TwoWay}"
+								Value="{Binding LCDValue, Mode=TwoWay}"
+								SendValueChanged="JSlider_SendValueChanged" />
+						</DockPanel>
+					</UniformGrid>
+				</DockPanel>
+			</DockPanel>
+		</Grid>
+	</Border>
+</Page>
