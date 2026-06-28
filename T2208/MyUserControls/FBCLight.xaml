@@ -1,0 +1,23 @@
+<UserControl
+	x:Class="T2208.MyUserControls.FBCLight"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:JCustomControls="clr-namespace:JayCustomControlLib;assembly=JayCustomControlLib"
+	xmlns:local="clr-namespace:T2208.MyUserControls"
+	xmlns:ViewModels="clr-namespace:T2208.ViewModels">
+	<UniformGrid
+		Columns="1">
+		<TextBlock
+			TextAlignment="Center"
+			Text="{Binding Content}" />
+		<JCustomControls:JLight
+			Margin="10,5"
+			NormalBrush="#FFD3D3D3"
+			GreenBrush="#FF008000"
+			LightStatus="{Binding LightStatus, Converter='{x:Static ViewModels:ConverterProvider.LightStatusConverter}'}"
+			BlinkEnable="{Binding IsBlink}"
+			BlinkStatus="{Binding BlinkLightStatus, Converter='{x:Static ViewModels:ConverterProvider.LightStatusConverter}'}" />
+	</UniformGrid>
+</UserControl>
