@@ -348,7 +348,7 @@ namespace T2208.ViewModels
 			if (flag10)
 			{
 				JSwitcher.JSwitcherGroup["OutputChannelGroup"][3].IsChecked = new bool?(true);
-				this.DCA1Group[(int)b].IsSelected = true;
+				this.DCA2Group[(int)(b - 7)].IsSelected = true;
 				this.IsShowOutputGroup = false;
 				this.IsShowDCA1Group = false;
 				this.IsShowDCA2Group = true;

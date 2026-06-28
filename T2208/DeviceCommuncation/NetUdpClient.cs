@@ -123,9 +123,24 @@ namespace T2208.DeviceCommuncation
 		{
 			UdpClient udpClient = (UdpClient)async.AsyncState;
 			IPEndPoint ipendPoint = (IPEndPoint)udpClient.Client.LocalEndPoint;
-			byte[] array = udpClient.EndReceive(async, ref ipendPoint);
-			udpClient.BeginReceive(new AsyncCallback(this.ReceiveCallback), udpClient);
-			bool flag = ipendPoint.Address.ToString() != IPProces.getIPAddress() && array[array.Length - 4] != 9 && array[array.Length - 3] != 108;
+			byte[] array;
+			try
+			{
+				array = udpClient.EndReceive(async, ref ipendPoint);
+			}
+			catch
+			{
+				return;
+			}
+			try
+			{
+				udpClient.BeginReceive(new AsyncCallback(this.ReceiveCallback), udpClient);
+			}
+			catch
+			{
+				return;
+			}
+			bool flag = array.Length >= 4 && ipendPoint.Address.ToString() != IPProces.getIPAddress() && array[array.Length - 4] != 9 && array[array.Length - 3] != 108;
 			if (flag)
 			{
 				NetUdpClient.OnDataReceive dataReceiveEvent = this.DataReceiveEvent;

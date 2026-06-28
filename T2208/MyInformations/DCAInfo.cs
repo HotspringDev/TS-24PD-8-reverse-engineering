@@ -314,7 +314,8 @@ namespace T2208.MyInformations
 			if (isEditName)
 			{
 				this.NameBytes = new byte[12];
-				for (int i = 0; i < this.InputName.Length; i++)
+				int num = (this.InputName.Length < this.NameBytes.Length) ? this.InputName.Length : this.NameBytes.Length;
+				for (int i = 0; i < num; i++)
 				{
 					this.NameBytes[i] = (byte)this.InputName[i];
 				}

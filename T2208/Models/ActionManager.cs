@@ -12,21 +12,30 @@ namespace T2208.Models
 		{
 			this.Timer.AutoReset = true;
 			this.Timer.Elapsed += this.Timer_Elapsed;
+			this.Timer.Start();
 		}
 
 		// Token: 0x06000793 RID: 1939 RVA: 0x00024504 File Offset: 0x00022704
 		private void Timer_Elapsed(object sender, ElapsedEventArgs e)
 		{
-			bool flag = this._ActionQueue.Count > 30;
-			if (flag)
+			Action action = null;
+			lock (this._ActionQueue)
 			{
-				this.Timer.Interval = 60.0;
+				bool flag = this._ActionQueue.Count > 30;
+				if (flag)
+				{
+					this.Timer.Interval = 60.0;
+				}
+				else
+				{
+					this.Timer.Interval = 80.0;
+				}
+				bool flag2 = this._ActionQueue.Count > 0;
+				if (flag2)
+				{
+					action = this._ActionQueue.Dequeue();
+				}
 			}
-			else
-			{
-				this.Timer.Interval = 80.0;
-			}
-			Action action = this._ActionQueue.Dequeue();
 			if (action != null)
 			{
 				action();
@@ -36,7 +45,10 @@ namespace T2208.Models
 		// Token: 0x06000794 RID: 1940 RVA: 0x00008DEF File Offset: 0x00006FEF
 		public void Add(Action action)
 		{
-			this._ActionQueue.Enqueue(action);
+			lock (this._ActionQueue)
+			{
+				this._ActionQueue.Enqueue(action);
+			}
 		}
 
 		// Token: 0x04000439 RID: 1081

@@ -770,7 +770,7 @@ namespace T2208.DeviceCommuncation
 			list8.Add(0);
 			list8.Add(sceneInfo.SystemInfo.DefaultPage);
 			list.AddRange(list8);
-			UpStream.SendCMD_LoadPresetFromPC(new byte[0]);
+			UpStream.SendCMD_LoadScenePresetFromPC(list.ToArray());
 		}
 
 		// Token: 0x06000963 RID: 2403 RVA: 0x00029F38 File Offset: 0x00028138

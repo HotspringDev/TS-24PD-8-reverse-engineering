@@ -264,7 +264,7 @@ namespace T2208.DeviceCommuncation
 			UpStream.InsertLocal_ID(list2);
 			UpStream.InsertDataType(list2, CommandConst.CMD_FatChannel);
 			UpStream.InsertData(list2, ch2Bytes);
-			list.AddRange(list);
+			list.AddRange(list2);
 			UpStream.InsertStopBitAndCheckBit(list, false, false);
 		}
 
@@ -416,7 +416,7 @@ namespace T2208.DeviceCommuncation
 			UpStream.InsertLocal_ID(list2);
 			UpStream.InsertDataType(list2, CommandConst.CMD_BusMixer);
 			UpStream.InsertData(list2, ch2Bytes);
-			list.AddRange(list);
+			list.AddRange(list2);
 			UpStream.InsertStopBitAndCheckBit(list, false, false);
 		}
 

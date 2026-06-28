@@ -21,12 +21,7 @@ namespace T2208.ViewModels
 				throw new ArgumentNullException("execute");
 			}
 			this._execute = execute;
-			Func<object, bool> func = canExecute;
-			if (canExecute == null && (func = AnotherCommandImplementation.<>c.<>9__3_0) == null)
-			{
-				func = (AnotherCommandImplementation.<>c.<>9__3_0 = (object x) => true);
-			}
-			this._canExecute = func;
+			this._canExecute = canExecute ?? ((object x) => true);
 		}
 
 		// Token: 0x14000001 RID: 1
